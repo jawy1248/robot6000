@@ -14,7 +14,7 @@ sudo apt install -y build-essential git bc bison flex libelf-dev   libssl-dev dw
 
 ## Download Kernel Source & PREEMPT_RT Patch
 
-1. Visit the official [PREEMPT_RT patch repository](https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/).
+1. Visit the official [PREEMPT_RT patch repository](https://mirrors.edge.kernel.org/pub/linux/kernel/).
 2. Choose a **stable LTS kernel version** that has a matching PREEMPT_RT patch.  
    - Common choices: `6.1.x` or `6.6.x` (LTS).
 3. Download:
@@ -23,8 +23,8 @@ sudo apt install -y build-essential git bc bison flex libelf-dev   libssl-dev dw
 
 Example:
 ```bash
-wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.1.92.tar.xz
-wget https://cdn.kernel.org/pub/linux/kernel/projects/rt/6.1/patch-6.1.92-rt39.patch.xz
+wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.9.tar.xz
+wget https://cdn.kernel.org/pub/linux/kernel/projects/rt/6.9/patch-6.9-rt5.patch.xz
 ```
 
 ---
