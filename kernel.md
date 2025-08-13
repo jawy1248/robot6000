@@ -31,9 +31,9 @@ wget https://cdn.kernel.org/pub/linux/kernel/projects/rt/6.9/patch-6.9-rt5.patch
 
 ## Extract and Apply the RT Patch
 ```bash
-tar -xf linux-6.1.92.tar.xz
-cd linux-6.1.92
-xzcat ../patch-6.1.92-rt39.patch.xz | patch -p1
+tar -xf linux-6.9.tar.xz
+cd linux-6.9
+xzcat ../patch-6.9-rt5.patch.xz | patch -p1
 ```
 
 ---
