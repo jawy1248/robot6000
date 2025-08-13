@@ -92,7 +92,17 @@ cd ../franka_ros2 && docker compose down -t 0 && cd ../
   REPO_DIR="$(cd "$SCRIPT_DIR/../franka_ros2" && pwd)"
   ```
 - The script assumes `docker compose` is available. If you only have `docker-compose` (hyphen version), update the script accordingly.
+- If it keeps not working throwing the error below, follow these simple steps:
+  1. Open Docker Desktop → Settings → Resources → File Sharing
+  2. Add `/tmp` to the list.
+  3. Apply & Restart Docker Desktop.
+```bash
+Error response from daemon: mounts denied: 
+The path /tmp/.X11-unix is not shared from the host and is not known to Docker.
+You can configure shared paths from Docker -> Preferences... -> Resources -> File Sharing.
+See https://docs.docker.com/ for more info.
+```
 
 ---
 
-> Return to the main [README.md](README.md)
+> Return to the main [README.md](https://github.com/jawy1248/robot6000/tree/main)

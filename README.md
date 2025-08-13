@@ -19,8 +19,6 @@ This doc summarizes **everything** to bring up and run the Franka Research 3 (FR
   - Instructions for installation can be found [here](https://git-scm.com/downloads/linux)
   - To clone `franka_ros2` and this project’s helper scripts.
 
-> For more details on Docker, please read the document found [here](readDocker.md)
-
 ---
 
 ## Networking & robot UI bits (outside ROS)
@@ -79,13 +77,7 @@ All of the following are provided/installed **inside** the Docker image we build
 
 ## Bring-up Sequence
 
-> This is here just so a reader sees _how_ the pieces above are used. Adjust names/paths to your repo layout.
-
-1. **Start the container** (from the parent folder with our `robot6000/run_franka.sh`):
-
-   ```bash
-   ./robot6000/run_franka.sh        # builds (optionally) and runs the Humble container
-   ```
+1. **Start the container**: follow the instructions found [here](readDocker.md)
 
 2. **Inside the container**: source the workspace and launch the hardware & controllers (examples):
 

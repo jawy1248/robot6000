@@ -67,7 +67,7 @@ When done, you can exit with:
        exit
 
 On the host, stop the container with:
-       cd franka_ros2 && docker compose down -t 0 && cd ../
+       cd ../franka_ros2 && docker compose down -t 0 && cd ../robot6000
 ============================================================
 "
 
