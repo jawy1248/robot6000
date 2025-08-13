@@ -42,11 +42,11 @@ fi
 
 # Step 3: Start the container (detached)
 echo "Starting Docker container..."
-(cd "$REPO_DIR" && sudo docker compose up -d)
+(cd "$REPO_DIR" && docker compose up -d)
 
 # Step 4: Automatically open a shell in the container
 echo "Opening shell inside container..."
-sudo docker exec -it franka_ros2 bash -c '
+docker exec -it franka_ros2 bash -c '
 echo "
 ============================================================
  Welcome to the franka_ros2 Docker container (ROS 2 Humble)

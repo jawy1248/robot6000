@@ -4,41 +4,47 @@ This doc summarizes **everything** to bring up and run the Franka Research 3 (FR
 
 ---
 
-## Host machine prerequisites (outside Docker)
+## Host machine (Linux) Prerequisites
 
 > You only need these on the host; all ROS2 packages are inside the container.
 
-- **Docker Engine** + **Docker Compose plugin**  
-  Used to build and run the ROS 2 workspace container.
+- **Docker Engine** + **Docker Compose plugin**
 
-- **Git**  
-  To clone `franka_ros2` and this project’s helper scripts.
+  - Instructions for installation can be found [here](https://docs.docker.com/engine/install/ubuntu/)
+  - Used to build and run the ROS 2 workspace container.
+  - _(Recommended)_ Add your user to the `docker` group so you can run Docker without `sudo`.
 
-- _(Recommended)_ Add your user to the `docker` group so you can run Docker without `sudo`.
+- **Git**
 
-> For more details, please read the document found [here](readDocker.md)
+  - Instructions for installation can be found [here](https://git-scm.com/downloads/linux)
+  - To clone `franka_ros2` and this project’s helper scripts.
+
+> For more details on Docker, please read the document found [here](readDocker.md)
 
 ---
 
 ## Networking & robot UI bits (outside ROS)
 
-- **FR3 Web Interface** (robot panel at `robot.franka.de` / robot IP)  
-  Used to complete first‑start, login, and safety checks (we hit the browser certificate prompt and used Chrome successfully).
+- **FR3 Desk** (Found at `robot.franka.de`)
 
-- **Watchman** (on the robot)  
-  Robot-side safety application. We encountered “Safety settings invalid… re‑validate in Watchman,” so be prepared to review/confirm safety scenarios there.
+  - Used to complete first‑start, login, and safety checks
 
-> Tip: Keep the robot and control PC on the same isolated network and confirm link by pinging the robot’s configured IP (as set on the robot panel).
+  > **Use Chrome...Firefox will not work**
+
+- **Watchman**  
+  Robot-side safety application. Must set up safety checks before the robot can be used
+
+<!-- > Tip: Keep the robot and control PC on the same isolated network and confirm link by pinging the robot’s configured IP (as set on the robot panel). -->
 
 ---
 
-## What’s inside the container (ROS 2 Humble)
+<!-- ## What’s inside the container (ROS 2 Humble)
 
 All of the following are provided/installed **inside** the Docker image we build and run.
 
 ### Core ROS 2
 
-- **ROS 2 Humble (desktop)**  
+- **ROS 2 Humble (desktop)**
   Messaging, TF, RViz, tools—our base middleware.
 
 ### Franka stack
@@ -50,7 +56,7 @@ All of the following are provided/installed **inside** the Docker image we build
   - `franka_msgs` – message/service definitions
   - `franka_example_controllers` – simple example controllers (useful sanity checks)
 
-- **libfranka** (brought in by the Docker image used by `franka_ros2`)  
+- **libfranka** (brought in by the Docker image used by `franka_ros2`)
   Low‑level C++ library that talks to the arm.
 
 ### ros2_control ecosystem
@@ -69,24 +75,9 @@ All of the following are provided/installed **inside** the Docker image we build
 - **rqt** tools – debugging/inspection (optional)
 - **Python 3 tooling** – for small examples/utilities (we used a `py_pubsub` style test while debugging)
 
----
+--- -->
 
-## Why each package matters
-
-| Package / Tool                       | Role in our setup                        | Notes                                                                   |
-| ------------------------------------ | ---------------------------------------- | ----------------------------------------------------------------------- |
-| Docker + Compose                     | Runs a reproducible ROS 2 environment    | Matches the _Docker Container Installation – Option A_ flow we scripted |
-| `franka_ros2`                        | The FR3 ROS 2 integration                | We’re on the **humble** branch                                          |
-| libfranka                            | Low-level FR3 comms                      | Pulled in by the image used with `franka_ros2`                          |
-| `ros2_control`, `controller_manager` | Control framework + controller lifecycle | We used the `list_controllers`/`load_configure_start` flow              |
-| `joint_state_broadcaster`            | Publishes `/joint_states`                | Start this first                                                        |
-| `joint_trajectory_controller`        | Basic motion control via trajectories    | Our default controller for bring-up                                     |
-| RViz / rqt (optional)                | Visualization & debugging                | Helpful during bring-up                                                 |
-| colcon/ament                         | Builds the workspace                     | Used in Docker image                                                    |
-
----
-
-## Minimal bring-up sequence (what we’ve been doing)
+## Bring-up Sequence
 
 > This is here just so a reader sees _how_ the pieces above are used. Adjust names/paths to your repo layout.
 
@@ -114,14 +105,6 @@ All of the following are provided/installed **inside** the Docker image we build
    ros2 control list_controllers
    ros2 topic echo /joint_states
    ```
-
----
-
-## Optional add‑ons (not required yet, but commonly paired)
-
-- **MoveIt 2** – for planning (we haven’t used it yet in this project)
-- **RViz Motion Planning plugin** – if/when MoveIt is added
-- **Keyboard/joystick teleop packages** – for manual jogging/testing
 
 ---
 
