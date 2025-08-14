@@ -70,9 +70,36 @@ make menuconfig
 4. There, select "Additional X.509 keys for default system keyring" and press Enter. An input window opens. Remove the entry "debian/canonical-certs.pem" from the prompt and press Ok.
 5. Now navigate to "Cryptographic API" > "Certificates for signature checking" (at the very bottom of the list) > "Provide system-wide ring of revocation certificates".
 6. There select "X.509 Certfifcates tob e preloaded into the system blacklist keyring" and press Enter. An input window opens. There remove the entry "debian/canonical-revoked-certs.pem" from the prompt and press Ok.
-7. Save this now the configuration in .config and exit the terminal interface (TUI).
+7. Navigate to "General Setup" > "Kernel hacking" (at the very bottom of the list) > "Compile-time checks and compiler options" and turn it off (by pressing space bar)
+8. Save this now the configuration in .config and exit the terminal interface (TUI).
 > **Depending on the Kernel and TUI, Steps 5-7 are automatically done when doing steps 3-4. At the bottom on the same screen, just make sure the blacklisted hashes is empty**
+## 8. To now fully install, run the command
+```bash
+scripts/config --disable CONFIG_MODULE_SIG
+scripts/config --disable CONFIG_MODULE_SIG_ALL
+scripts/config --set-val CONFIG_MODULES n
+yes "" | make olddefconfig
+```
+
+```bash
+rm -rf debian/
+make -j"$(nproc)" WERROR=0 bindeb-pkg
+```
+> This takes a long time (like a **LONG** time), the `-j$(nproc)` piece of the command allows it to use all available CPU threads, so don't try to do anything else while this command is running
+
+> The `WERROR=0` part of the command is only if using Ubuntu 24.04.1 LTS, as it is slightly different than instructed.
+
+> **Why this helps**: Linux 5.9.1 (2020-era) wasn’t tested against today’s compilers. Newer GCCs add static analysis warnings that trip on old libsubcmd code in tools/ (the xrealloc helper). Turning off -Werror for tools or using an older compiler sidesteps it.
+
+Run the following command to fully install the newly created package
+```bash
+sudo dpkg -i ../linux-headers-*.deb ../linux-image-*.deb
+```
+
+## 9. Verify the new kernel
+1. Reboot the system, the grub menu (hold shift during boot) should allow you to choose the newly installed kernel
+    - To see which kernel will be used after the boot, look at the output of the command `uname -a`. The output should contain the string `PREEMPT_RT`
 
 ---
 
-# ENDED ON PAGE 109 OF FRANKA MANUAL 
+# ENDED ON PAGE 109 OF FRANKA MANUAL "VERIFYING THE NEW KERNAL" --- START HERE
