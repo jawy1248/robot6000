@@ -6,6 +6,9 @@ The only thing that needs to happen before starting this document is ensuring th
 
 > Ubuntu 24.04.1 LTS was used for this tutorial, with Pro installed
 
+> [!tip] FRANKA Manual  
+> Found [here]()
+
 ---
 
 # 1. Install Required Software
