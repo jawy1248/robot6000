@@ -12,6 +12,8 @@ The only thing that needs to happen before starting this document is ensuring th
 
 # 1. Install Required Software
 
+## Pre-git
+
 1. Ubuntu Pro
 2. VSCode (from the SNAP store) (just "code" in the store)
 3. Git
@@ -21,6 +23,16 @@ The only thing that needs to happen before starting this document is ensuring th
    git config --global user.name "mek1156"
    git config --global user.email "labStation@robot6000.uofu"
    ```
+
+> Now, it is suggested to download this repository and use the previously made shell scripts for ease of use
+
+```bash
+cd ./.ssh
+ssh-keygen -t ed25519 -C "labStation@robot6000.uofu"
+```
+
+## Post-git
+
 4. Docker
    ```bash
    chmod +x scripts/installDocker.sh
