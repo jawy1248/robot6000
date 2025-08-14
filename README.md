@@ -18,15 +18,17 @@ First things that needs to happen is to download all the software that will be n
 2. VSCode (from the SNAP store) (just "code" in the store)
 3. Chrome (from browser)
    > This is needed for FRANKA Desk later
-4. Git
+4. Neovim (or vim)
+   ```bash
+   sudo apt install neovim
+   ```
+5. Git
    ```bash
    sudo apt update
    sudo apt install git
    git config --global user.name "mek1156"
    git config --global user.email "labStation@robot6000.uofu"
    ```
-
-> Now, it is suggested to download this repository and use the previously made shell scripts for ease of use
 
 Setup the SSH key so you can access git/github
 
@@ -49,21 +51,17 @@ Now you should have this repository downloaded and continue with the next steps
 
 ## Post-git
 
-5. Docker
+6. Docker
    ```bash
    chmod +x scripts/installDocker.sh
    ./scripts/installDocker.sh
    ```
    > You should see a "Hello from Docker" message at the end, as the docker-hello-world script is ran as a check
-6. Docker Desktop
-   ```bash
-   chmod +x scripts/installDockerDesk.sh
-   ./scripts/installDockerDesk.sh
-   ```
 
 ---
 
 # 2. FRANKA Setup
+
 Now that all the required softwares are installed, we will move on to setting up the FRANKA Erica Research 3 Robot
 
 1. Download the FRANKA ROS2 packages
@@ -78,6 +76,71 @@ Now that all the required softwares are installed, we will move on to setting up
    4. Do the "First Start" reqirements
    5. Setup the admin, safety, and student profiles
 3. Setup static IP addresses for control via FCI
-   1. Linux machine (*Workstation PC*)
-   2. FRANKA Desk (*Control*)
-   ![staticIP](figs/staticIPs.png)
+   1. Linux machine (_Workstation PC_)
+   2. FRANKA Desk (_Control_)
+      ![staticIP](figs/staticIPs.png)
+4. Start the realtime-kernel
+
+   ```bash
+   sudo apt install ubuntu-pro-client
+   sudo pro enable realtime-kernel
+   ```
+
+   > This is where the Ubuntu Pro is required
+
+   Next, you will have to reboot the machine for the effects to take place. After reboot, you can check you are on the correct kernel with `uname -a`. It should contain the strings `realtime` and `PREEMPT_RT`. Additionally, if you `cat /sys/kernel/realtime` the number `1` should be output.
+
+5. Setup config docs for kernel
+   ```bash
+   sudo addgroup realtime
+   sudo usermod -a -G realtime $(whoami)
+   sudo nvim /etc/security/limits.conf
+   ```
+   This will open a neovim editor where you need to add the following lines
+   ```conf
+   @realtime soft rtprio 99
+   @realtime soft priority 99
+   @realtime soft memlock 102400
+   @realtime hard rtprio 99
+   @realtime hard priority 99
+   @realtime hard memlock 102400
+   ```
+   > Close neovim with `esc` -> `:` -> `wq` -> `enter`  
+   > You will then need to reboot once more (via GUI or `reboot` in CLI)
+
+---
+
+# 3. FRANKA Control via FCI
+
+We are now to the part of actually controlling the FRANKA via FCI!
+
+1. Open FRANKA Desk, unlock the joints, and allow for FCI control
+2. Open the provide dockerized ros2ws from FRANKA
+
+   > Open Docker Desktop (so Docker Engine starts)
+
+   ```bash
+   chmod +x scripts/run_franka.sh
+   ./scripts/run_franka.sh
+   ```
+
+   > If this is your first time running this, and have to build the container, run this command
+
+   ```bash
+   chmod +x scripts/run_franka.sh
+   ./scripts/run_franka.sh -n
+   ```
+
+   > If the container is already build, you can run this command to save time
+
+   Once the ros2ws is active, run the following commands
+
+   ```bash
+   vcs import src < src/franka.repos --recursive --skip-existing
+   colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+   source install/setup.bash
+   ```
+
+   > Sometimes (unsure why still), you have to run the `colcon build` command above a second time, if `libfranka` has failed, usually it just simply works on the seconds build
+
+3. Next, you need to change `config.yaml` file to update the IP address of the robot to the static IP address set above. This file is found at `robot6000 > franka_ros2 > franka_bringup > conifg`
