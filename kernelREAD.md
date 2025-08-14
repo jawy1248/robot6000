@@ -63,7 +63,7 @@ make menuconfig
 ```
 
 ## 7. TUI
-> These are taken directly from the FRANKA manual
+> **These are taken directly from the FRANKA manual**
 1. Navigate with the up/down keys to "General Setup" > "Preemption Model" and mark there > "Fully Preemptible Kernel (Real-Time)" By using the side arrow keys you can move the cursor to Select in the command line at the bottom of the screen. Now press <Enter> and the selection is chosen.
 2. Set the cursor in the command line to <EXIT> and press <Enter> repeatedly until you return to the main menu.
 3. Now navigate to "Cryptographic API" > "Certificates for signature checking" (at the very bottom of the list) > "Provide system-wide ring of trusted keys".
@@ -71,3 +71,4 @@ make menuconfig
 5. Now navigate to "Cryptographic API" > "Certificates for signature checking" (at the very bottom of the list) > "Provide system-wide ring of revocation certificates".
 6. There select "X.509 Certfifcates tob e preloaded into the system blacklist keyring" and press Enter. An input window opens. There remove the entry "debian/canonical-revoked-certs.pem" from the prompt and press Ok.
 7. Save this now the configuration in .config and exit the terminal interface (TUI).
+> **Depending on the Kernel and TUI, Steps 5-7 are automatically done when doing steps 3-4. At the bottom on the same screen, just make sure the blacklisted hashes is empty**
