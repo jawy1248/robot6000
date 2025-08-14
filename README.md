@@ -6,8 +6,7 @@ The only thing that needs to happen before starting this document is ensuring th
 
 > Ubuntu 24.04.1 LTS was used for this tutorial, with Pro installed
 
-> [!tip] FRANKA Manual  
-> Found [here](https://www.franka.de/hubfs/Product%20Manual%20Franka%20Research%203_R02210_1.5_EN-1.pdf?hsLang=en)
+> FRANKA Manual found [here](https://www.franka.de/hubfs/Product%20Manual%20Franka%20Research%203_R02210_1.5_EN-1.pdf?hsLang=en)
 
 ---
 
@@ -176,6 +175,16 @@ We are now to the part of actually controlling the FRANKA via FCI!
    source install/setup.bash
    ```
 
+   > After finishing the session, use this command to close the docker daemon
+   ```bash
+   cd ../franka_ros2 && docker compose down -t 0 && cd ../robot6000
+   ```
+
    > Sometimes (unsure why still), you have to run the `colcon build` command above a second time, if `libfranka` has failed, usually it just simply works on the seconds build
 
-3. Next, you need to change `config.yaml` file to update the IP address of the robot to the static IP address set above. This file is found at `robot6000 > franka_ros2 > franka_bringup > conifg`
+3. Next, you need to change `config.yaml` file to update the IP address of the robot to the static IP address `172.16.0.2`. This file is found at `robot6000 > franka_ros2 > franka_bringup > conifg`
+
+4. Test you build. In the ros2ws, run the command
+   ```bash
+   ros2 launch franka_bringup example.launch.py controller_name:=elbow_example_controller
+   ```
