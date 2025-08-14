@@ -7,7 +7,7 @@ The only thing that needs to happen before starting this document is ensuring th
 > Ubuntu 24.04.1 LTS was used for this tutorial, with Pro installed
 
 > [!tip] FRANKA Manual  
-> Found [here]()
+> Found [here](https://www.franka.de/hubfs/Product%20Manual%20Franka%20Research%203_R02210_1.5_EN-1.pdf?hsLang=en)
 
 ---
 
@@ -135,23 +135,29 @@ We are now to the part of actually controlling the FRANKA via FCI!
 2. Open the provide dockerized ros2ws from FRANKA
 
    > If this is your first time running this, and have to build the container, run this command
+
    ```bash
    chmod +x scripts/run_franka.sh
    ./scripts/run_franka.sh
    ```
+
    > If the container is already build, you can run this command to save time
+
    ```bash
    chmod +x scripts/run_franka.sh
    ./scripts/run_franka.sh -n
    ```
 
    If this fails with error code 100, then you need to run the following commands to give docker enginer DNS access
+
    ```bash
    sudo mkdir -p /etc/docker
    echo '{"dns": ["8.8.8.8","1.1.1.1"]}' | sudo tee /etc/docker/daemon.json
    sudo systemctl restart docker
    ```
+
    Then rerun
+
    ```bash
    ./scripts/run_franka.sh
    ```
@@ -161,9 +167,11 @@ We are now to the part of actually controlling the FRANKA via FCI!
    ```bash
    vcs import src < src/franka.repos --recursive --skip-existing
    ```
+
    ```bash
    colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
    ```
+
    ```bash
    source install/setup.bash
    ```
