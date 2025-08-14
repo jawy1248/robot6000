@@ -52,10 +52,24 @@ Now you should have this repository downloaded and continue with the next steps
 ## Post-git
 
 6. Docker
+
    ```bash
    chmod +x scripts/installDocker.sh
    ./scripts/installDocker.sh
    ```
+
+   ```bash
+   sudo groupadd docker
+   ```
+
+   ```bash
+   sudo usermod -aG docker $USER
+   ```
+
+   ```bash
+   newgrp docker
+   ```
+
    > If you run `docker run hello-world`, you should see a "Hello from Docker"
 
 ---
