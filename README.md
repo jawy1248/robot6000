@@ -77,6 +77,7 @@ Now that all the required softwares are installed, we will move on to setting up
    3. Open **Chrome** and type in the url `robot.franka.de`
    4. Do the "First Start" reqirements
    5. Setup the admin, safety, and student profiles
-3. Setup static IP addresses
-   1. On Linux machine
-   2. In FRANKA Desk
+3. Setup static IP addresses for control via FCI
+   1. Linux machine (*Workstation PC*)
+   2. FRANKA Desk (*Control*)
+   ![staticIP](figs/staticIPs.png)
