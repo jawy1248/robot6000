@@ -30,3 +30,9 @@ The only thing that needs to happen before starting this document is ensuring th
    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
    sudo docker run hello-world
    ```
+4. Docker Desktop
+   ```bash
+   sudo apt install gnome-terminal
+   sudo apt-get update
+   sudo apt-get install ./docker-desktop-amd64.deb
+   ```
