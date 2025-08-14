@@ -72,3 +72,7 @@ make menuconfig
 6. There select "X.509 Certfifcates tob e preloaded into the system blacklist keyring" and press Enter. An input window opens. There remove the entry "debian/canonical-revoked-certs.pem" from the prompt and press Ok.
 7. Save this now the configuration in .config and exit the terminal interface (TUI).
 > **Depending on the Kernel and TUI, Steps 5-7 are automatically done when doing steps 3-4. At the bottom on the same screen, just make sure the blacklisted hashes is empty**
+
+---
+
+# ENDED ON PAGE 109 OF FRANKA MANUAL 
