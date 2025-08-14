@@ -16,11 +16,11 @@ The only thing that needs to happen before starting this document is ensuring th
 2. VSCode (from the SNAP store) (just "code" in the store)
 3. Docker
    ```bash
-   chmod +x installDocker.sh
-   ./installDocker.sh
+   chmod +x scripts/installDocker.sh
+   ./scripts/installDocker.sh
    ```
 4. Docker Desktop
    ```bash
-   chmod +x installDockerDesk.sh
-   ./installDockerDesk.sh
+   chmod +x scripts/installDockerDesk.sh
+   ./scripts/installDockerDesk.sh
    ```
