@@ -3,7 +3,7 @@ set -euo pipefail
 
 BUILD=true
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_DIR="$(cd "$SCRIPT_DIR/../franka_ros2" && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/../../franka_ros2" && pwd)"
 
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
