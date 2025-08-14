@@ -14,12 +14,19 @@ The only thing that needs to happen before starting this document is ensuring th
 
 1. Ubuntu Pro
 2. VSCode (from the SNAP store) (just "code" in the store)
-3. Docker
+3. Git
+   ```bash
+   sudo apt update
+   sudo apt install git
+   git config --global user.name "mek1156"
+   git config --global user.email "labStation@robot6000.uofu"
+   ```
+4. Docker
    ```bash
    chmod +x scripts/installDocker.sh
    ./scripts/installDocker.sh
    ```
-4. Docker Desktop
+5. Docker Desktop
    ```bash
    chmod +x scripts/installDockerDesk.sh
    ./scripts/installDockerDesk.sh
