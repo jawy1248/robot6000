@@ -150,7 +150,6 @@ We are now to the part of actually controlling the FRANKA via FCI!
    ```
    Then rerun
    ```bash
-   chmod +x scripts/run_franka.sh
    ./scripts/run_franka.sh
    ```
 
@@ -158,7 +157,11 @@ We are now to the part of actually controlling the FRANKA via FCI!
 
    ```bash
    vcs import src < src/franka.repos --recursive --skip-existing
+   ```
+   ```bash
    colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+   ```
+   ```bash
    source install/setup.bash
    ```
 
