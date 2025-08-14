@@ -131,8 +131,6 @@ We are now to the part of actually controlling the FRANKA via FCI!
 1. Open FRANKA Desk, unlock the joints, and allow for FCI control
 2. Open the provide dockerized ros2ws from FRANKA
 
-   > Open Docker Desktop (so Docker Engine starts)
-
    ```bash
    chmod +x scripts/run_franka.sh
    ./scripts/run_franka.sh
