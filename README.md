@@ -131,19 +131,28 @@ We are now to the part of actually controlling the FRANKA via FCI!
 1. Open FRANKA Desk, unlock the joints, and allow for FCI control
 2. Open the provide dockerized ros2ws from FRANKA
 
+   > If this is your first time running this, and have to build the container, run this command
    ```bash
    chmod +x scripts/run_franka.sh
    ./scripts/run_franka.sh
    ```
-
-   > If this is your first time running this, and have to build the container, run this command
-
+   > If the container is already build, you can run this command to save time
    ```bash
    chmod +x scripts/run_franka.sh
    ./scripts/run_franka.sh -n
    ```
 
-   > If the container is already build, you can run this command to save time
+   If this fails with error code 100, then you need to run the following commands to give docker enginer DNS access
+   ```bash
+   sudo mkdir -p /etc/docker
+   echo '{"dns": ["8.8.8.8","1.1.1.1"]}' | sudo tee /etc/docker/daemon.json
+   sudo systemctl restart docker
+   ```
+   Then rerun
+   ```bash
+   chmod +x scripts/run_franka.sh
+   ./scripts/run_franka.sh
+   ```
 
    Once the ros2ws is active, run the following commands
 
