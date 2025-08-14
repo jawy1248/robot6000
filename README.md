@@ -56,7 +56,7 @@ Now you should have this repository downloaded and continue with the next steps
    chmod +x scripts/installDocker.sh
    ./scripts/installDocker.sh
    ```
-   > You should see a "Hello from Docker" message at the end, as the docker-hello-world script is ran as a check
+   > If you run `docker run hello-world`, you should see a "Hello from Docker"
 
 ---
 
