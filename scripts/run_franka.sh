@@ -4,6 +4,7 @@ set -euo pipefail
 BUILD=true
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/../../franka_ros2" && pwd)"
+CUSTOM_DIR="$SCRIPT_DIR/scripts"
 
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
@@ -23,9 +24,17 @@ done
 # Ensure repo exists and has docker-compose.yml
 if [[ ! -f "$REPO_DIR/docker-compose.yml" ]]; then
   echo "Error: docker-compose.yml not found in $REPO_DIR."
-  echo "Please ensure this script is in the parent directory of the franka_ros2 repository."
   exit 1
 fi
+
+# Step 0: Replace the FRANKA Dockerfile with the personalized Dockerfile (and entrypoints)
+# Remove existing files in franka_ros2
+echo "Removing old Dockerfile from franka_ros2..."
+rm -f "$REPO_DIR/Dockerfile"
+
+# Copy custom versions into franka_ros2
+echo "Copying custom Dockerfile..."
+cp "$CUSTOM_DIR/Dockerfile" "$REPO_DIR/Dockerfile"
 
 # Step 1: Save user UID and GID into .env for correct permissions
 echo "USER_UID=$(id -u)" > "$REPO_DIR/.env"
@@ -56,12 +65,6 @@ To set up your workspace inside the container:
 
   1. Import dependencies:
        vcs import src < src/franka.repos --recursive --skip-existing
-
-  2. Build the ROS 2 workspace:
-       colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
-
-  3. Source the workspace:
-       source install/setup.bash
 
 When done, you can exit with:
        exit
