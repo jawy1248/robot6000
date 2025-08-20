@@ -183,7 +183,7 @@ We are now to the part of actually controlling the FRANKA via FCI!
 
 3. Next, you need to change `config.yaml` file to update the IP address of the robot to the static IP address `172.16.0.2`. This file is found at `robot6000 > franka_ros2 > franka_bringup > conifg`
 
-4. Test you build. In the ros2ws, run the command
+4. Test your build. In the ros2_ws, run the command
    ```bash
    ros2 launch franka_bringup example.launch.py controller_name:=elbow_example_controller
    ```
