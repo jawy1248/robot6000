@@ -167,15 +167,14 @@ We are now to the part of actually controlling the FRANKA via FCI!
    vcs import src < src/franka.repos --recursive --skip-existing
    ```
 
-   ```bash
-   colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
-   ```
+   > If you hake any changes to files in `ros2_ws > src`, then you will have to run:
 
    ```bash
-   source install/setup.bash
+   colcon build
    ```
 
    > After finishing the session, use this command to close the docker daemon
+
    ```bash
    cd ../franka_ros2 && docker compose down -t 0 && cd ../robot6000
    ```
