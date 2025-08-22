@@ -85,7 +85,6 @@ RUN sudo chown -R $USERNAME:$USERNAME /ros2_ws \
     && mkdir -p src
 
 RUN colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
-RUN . /install/setup.bash
 
 COPY ./franka_entrypoint.sh /franka_entrypoint.sh
 RUN sudo chmod +x /franka_entrypoint.sh
