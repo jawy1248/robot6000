@@ -167,6 +167,10 @@ We are now to the part of actually controlling the FRANKA via FCI!
    vcs import src < src/franka.repos --recursive --skip-existing
    ```
 
+   ```bash
+   source install/setup.bash
+   ```
+
    > If you hake any changes to files in `ros2_ws > src`, then you will have to run:
 
    ```bash

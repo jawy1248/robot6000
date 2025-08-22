@@ -67,7 +67,7 @@ To set up your workspace inside the container:
        vcs import src < src/franka.repos --recursive --skip-existing
 
   2. Source install
-        source ./install/set.bash
+       source install/set.bash
 
 When done, you can exit with:
        exit
