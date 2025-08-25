@@ -189,5 +189,5 @@ We are now to the part of actually controlling the FRANKA via FCI!
 
 4. Test your build. In the ros2_ws, run the command
    ```bash
-   ros2 launch franka_bringup example.launch.py controller_name:=elbow_example_controller
+   ros2 launch franka_bringup example.launch.py controller_name:=move_to_start_example_controller
    ```
