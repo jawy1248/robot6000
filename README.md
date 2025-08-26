@@ -7,6 +7,7 @@ The only thing that needs to happen before starting this document is ensuring th
 > Ubuntu 24.04.1 LTS was used for this tutorial, with Pro installed
 
 > FRANKA Manual found [here](https://www.franka.de/hubfs/Product%20Manual%20Franka%20Research%203_R02210_1.5_EN-1.pdf?hsLang=en)
+> FCI Documentation found [here](https://frankarobotics.github.io/docs/franka_ros2.html)
 
 ---
 
@@ -188,6 +189,12 @@ We are now to the part of actually controlling the FRANKA via FCI!
 3. Next, you need to change `config.yaml` file to update the IP address of the robot to the static IP address `172.16.0.2`. This file is found at `robot6000 > franka_ros2 > franka_bringup > conifg`
 
 4. Test your build. In the ros2_ws, run the command
+   > For R-Viz
+   > When in the Docker container, run `xhost +local:docker` so the container has access to mointor/graphics information
+   ```bash
+   ros2 launch franka_fr3_moveit_config moveit.launch.py robot_ip:=dont-care use_fake_hardware:=true
+   ```
+   > For Moving Robot
    ```bash
    ros2 launch franka_bringup example.launch.py controller_name:=move_to_start_example_controller
    ```
