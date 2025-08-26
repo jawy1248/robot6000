@@ -170,6 +170,10 @@ We are now to the part of actually controlling the FRANKA via FCI!
    ```
 
    ```bash
+   colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+   ```
+
+   ```bash
    source install/setup.bash
    ```
 
