@@ -6,8 +6,8 @@ The only thing that needs to happen before starting this document is ensuring th
 
 > Ubuntu 24.04.1 LTS was used for this tutorial, with Pro installed
 
-> FRANKA Manual found [here](https://www.franka.de/hubfs/Product%20Manual%20Franka%20Research%203_R02210_1.5_EN-1.pdf?hsLang=en){:target="_blank" rel="noopener"}
-> FCI Documentation found [here](https://frankarobotics.github.io/docs/franka_ros2.html){:target="_blank" rel="noopener"}
+> FRANKA Manual found [here](https://www.franka.de/hubfs/Product%20Manual%20Franka%20Research%203_R02210_1.5_EN-1.pdf?hsLang=en)
+> FCI Documentation found [here](https://frankarobotics.github.io/docs/franka_ros2.html)
 
 ---
 
