@@ -205,5 +205,5 @@ We are now to the part of actually controlling the FRANKA via FCI!
    ```
    > For Moving Robot
    ```bash
-   ros2 launch franka_bringup example.launch.py controller_name:=move_to_start_example_controller
+   ros2 control load_controller --set-state active move_to_start_example_controller
    ```
