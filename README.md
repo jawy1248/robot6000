@@ -199,6 +199,10 @@ We are now to the part of actually controlling the FRANKA via FCI!
    ```bash
    ros2 launch franka_fr3_moveit_config moveit.launch.py robot_ip:=dont-care use_fake_hardware:=true
    ```
+   > Start here for moving the Robot
+   ```bash
+   ros2 launch franka_bringup example.launch.py controller_name:=gravity_compensation_example_controller
+   ```
    > For Moving Robot
    ```bash
    ros2 launch franka_bringup example.launch.py controller_name:=move_to_start_example_controller
